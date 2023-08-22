@@ -6,7 +6,7 @@ from matplotlib.patches import Rectangle
 import seaborn as sns
 from sklearn.metrics import confusion_matrix, accuracy_score, balanced_accuracy_score
 
-from utils.constants import NEG_CLASS
+from constants import NEG_CLASS
 
 
 def train(
