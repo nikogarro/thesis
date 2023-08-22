@@ -6,7 +6,7 @@ from torch.utils.data import Dataset, DataLoader, SubsetRandomSampler
 from torchvision import transforms
 from sklearn.model_selection import train_test_split, StratifiedKFold
 
-from utils.constants import (
+from constants import (
     GOOD_CLASS_FOLDER,
     DATASET_SETS,
     INPUT_IMG_SIZE,
