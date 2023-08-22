@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from torchvision import models
-from utils.constants import INPUT_IMG_SIZE
+from constants import INPUT_IMG_SIZE
 
 
 class CustomVGG(nn.Module):
