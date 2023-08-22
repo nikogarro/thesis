@@ -26,7 +26,15 @@ class MVTEC_AD_DATASET(Dataset):
     def __init__(self, root):
         self.classes = ["Good", "Anomaly"] if NEG_CLASS == 1 else ["Anomaly", "Good"]
         self.img_transform = transforms.Compose(
-            [transforms.Resize(INPUT_IMG_SIZE), transforms.ToTensor()]
+            [transforms.Resize(INPUT_IMG_SIZE),
+              transforms.RandomHorizontalFlip(p=0.5),
+              transforms.RandomVerticalFlip(p=0.5),
+              transforms.GaussianBlur(kernel_size=(1, 3), sigma=(0.1, 2.0)),
+              # σε περιπτωση που έχουμε ασπρομαυρη καμερα
+              #transform.Grayscale([p])
+              # σε περιπτωση που έχουμε μη ελενχόμενες συνθήκες φωτισμου
+              #transforms.ColorJitter([brightness, contrast, ...])
+              transforms.ToTensor()]
         )
 
         (
