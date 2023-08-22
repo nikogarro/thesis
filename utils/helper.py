@@ -18,6 +18,10 @@ def train(
     model.to(device)
     model.train()
 
+    plotting_epoch = []
+    plotting_epoch_loss = []
+    plotting_epoch_acc = []
+
     for epoch in range(1, epochs + 1):
         print(f"Epoch {epoch}/{epochs}:", end=" ")
         running_loss = 0
@@ -43,13 +47,37 @@ def train(
         epoch_acc = running_corrects.double() / n_samples
         print("Loss = {:.4f}, Accuracy = {:.4f}".format(epoch_loss, epoch_acc))
 
+        plotting_epoch.append(epoch)
+        plotting_epoch_loss.append(epoch_loss)
+        plotting_epoch_acc.append(epoch_acc.cpu())
+
+        # plt.plot(plotting_epoch, plotting_epoch_loss, '--ok')
+        # plt.title('Loss Graph')
+        # plt.xlabel('Epoch')
+        # plt.ylabel('Loss')
+        # plt.show()
+
+        # plt.plot(plotting_epoch, plotting_epoch_acc, '--ok')
+        # plt.title('Accuracy Graph')
+        # plt.xlabel('Epoch')
+        # plt.ylabel('Accuracy')
+        # plt.show()
+
         if target_accuracy != None:
             if epoch_acc > target_accuracy:
                 print("Early Stopping")
+                plotting_training_stats(plotting_epoch, plotting_epoch_loss, "Loss")
+                plotting_training_stats(plotting_epoch, plotting_epoch_acc, "Accuracy")
                 break
 
     return model
 
+def plotting_training_stats(plotting_epoch, plotting_epoch_stat, stat_type):
+    plt.plot(plotting_epoch, plotting_epoch_stat, '--ok')
+    plt.title("Training " + stat_type)
+    plt.xlabel('Epoch')
+    plt.ylabel(stat_type)
+    plt.show()
 
 def evaluate(model, dataloader, device):
     """
