@@ -4,7 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.patches import Rectangle
 import seaborn as sns
-from sklearn.metrics import confusion_matrix, accuracy_score, balanced_accuracy_score
+from sklearn.metrics import confusion_matrix, accuracy_score, balanced_accuracy_score, classification_report
 
 from constants import NEG_CLASS
 
