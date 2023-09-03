@@ -112,6 +112,7 @@ def evaluate(model, dataloader, device):
     print("Balanced Accuracy: {:.4f}".format(balanced_accuracy))
     print()
     plot_confusion_matrix(y_true, y_pred, class_names=class_names)
+    print(classification_report(y_true, y_pred,  digits=3, target_names=['Good', 'Anomaly']))
 
 
 def plot_confusion_matrix(y_true, y_pred, class_names="auto"):
